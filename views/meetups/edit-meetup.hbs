@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>Editar encuentro</h1>
+
+            <form action="/meetup/edit/{{id}}" method="POST">
+
+                <div class='form-group'>
+                    <label for='name'>Nombre del encuentro</label>
+                    <input name='name' type='text' class='form-control' placeholder='Nombre del encuentro' id='name'
+                        value="{{name}}" required>
+                </div>
+
+                <div class='form-group'>
+                    <label for='description'>Descripción del encuentro</label>
+                    <input name='description' type='text' class='form-control' placeholder='Descripción del encuentro'
+                        id='description' value="{{description}}" required>
+                </div>
+
+                <div class='form-group'>
+                    <label for='date'>Fecha</label>
+                    <input name='date' type='text' class='form-control' placeholder='Fecha' id='date' value="{{date}}" required>
+                </div>
+
+                <div class='form-group'>
+                    <label for='location'>Lugar</label>
+                    <input name='latitude' type='text' class='form-control' placeholder="Latitud" id='latitude'
+                        value="{{location.coordinates.[0]}}" required>
+                    <input name='longitude' type='text' class='form-control' placeholder="Longitud" id='longitude'
+                        value="{{location.coordinates.[1]}}" required>
+                </div>
+
+                <button type='submit' class='btn btn-dark btn-block'>Guardar cambios</button>
+                {{!-- {{#if errorMsg}}
+                <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
+                    {{errorMsg}}</p>
+                {{/if}} --}}
+            </form>
+
+        </div>
+    </div>
+</div>

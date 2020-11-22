@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>Crear nueva clase</h1>
+
+            <form action="/courses/new" method="POST">
+
+                <div class='form-group'>
+                    <label for='name'>Nombre de tu clase</label>
+                    <input name='name' type='text' class='form-control' placeholder='Nombre de la clase' id='name'
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="style">Estilo de baile</label>
+                    <select name="style" class="form-control" id="style">
+                         <option value="">Seleccionar</option>
+                        <option value="Salsa casino">Salsa casino</option>
+                        <option value="Bachata">Bachata</option>
+                        <option value="Hip-hop">Hip-hop</option>
+                        <option value="Afrobeats">Afrobeats</option>
+                        <option value="Tango">Tango</option>
+                        <option value="Twist">Twist</option>
+                        <option value="Flamenco">Flamenco</option>
+                        <option value="Reggeaton">Reggeaton</option>
+                        <option value="Twerk">Twerk</option>
+                        <option value="Funky">Funky</option>
+                        <option value="Zumba">Zumba</option>
+                        <option value="Dancehall">Dancehall</option>
+                    </select>
+                </div>
+
+                <div class='form-group'>
+                    <label for='description'>Descripción</label>
+                    <input name='description' type='text' class='form-control' placeholder='Descripción de la clase'
+                        id='description' required>
+                </div>
+
+                <div class='form-group'>
+                    <label for='date'>Fecha</label>
+                    <input name='date' type='text' class='form-control' placeholder='Fecha' id='date' required>
+                </div>
+
+                <div class='form-group'>
+                    <label for='location'>Lugar</label>
+                    <input name='latitude' type='text' class='form-control' placeholder="Latitud" id='latitude'
+                        required>
+                    <input name='longitude' type='text' class='form-control' placeholder="Longitud" id='longitude'
+                        required>
+                </div>
+
+                <button type='submit' class='btn btn-dark btn-block'>Registrarse</button>
+                {{!-- {{#if errorMsg}}
+                <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
+                    {{errorMsg}}</p>
+                {{/if}} --}}
+            </form>
+
+        </div>
+    </div>
+</div>

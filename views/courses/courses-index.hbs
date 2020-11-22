@@ -1,0 +1,25 @@
+<h1>CLASEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSS</h1>
+
+{{#each response}}
+
+<p>Nombre: {{name}}</p>
+
+{{#if isTeach}}
+
+
+<a href="/courses/edit/{{id}}">Editar detalle</a>
+
+<form method="POST" action="/courses/cancel/{{id}}">
+    <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+</form>
+
+{{/if}}
+
+{{/each}}
+
+
+
+
+{{#if isTeach}}
+<p>Crear nueva clase</p>
+{{/if}}
