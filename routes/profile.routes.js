@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 //const passport = require("passport")
 
-const User = require("../models/user.mondel")
+const User = require("../models/user.model")
 
 
 const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })

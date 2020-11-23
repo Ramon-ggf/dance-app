@@ -3,6 +3,8 @@ const router = express.Router()
 
 const Meetup = require('./../models/meetup.model')
 
+const User = require('./../models/user.model')
+
 const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })
 
 router.get('/', (req, res, next) => {
@@ -76,8 +78,10 @@ router.post('/attend/:meetup_id', connectionChecker, (req, res, next) => {
 
     const meetId = req.params.meetup_id
 
-    Meetup
-        .findByIdAndUpdate(meetId, { $push: { assistants: req.user.id } }, { new: true })
+    const userId = req.user.id
+
+    User
+        .findByIdAndUpdate(userId, { $push: { meetups: meetId } }, { new: true })
         .then(response => console.log(response))
         .catch(err => next(new Error(err)))
 

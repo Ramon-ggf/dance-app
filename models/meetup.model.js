@@ -23,15 +23,10 @@ const meetupSchema = new Schema({
         },
         coordinates: [Number]
     },
-    assistants: {
-            type: [Schema.Types.ObjectId],
-            ref: 'User'
-    },
     active: {
         type: Boolean,
         default: true
     }
-
 }, {
 
     timestamps: true

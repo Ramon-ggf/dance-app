@@ -30,13 +30,13 @@ const courseSchema = new Schema({
     },
     teacher: {
         type: [Schema.Types.ObjectId],
-        ref: 'User'
+        ref: 'User',
+        unique: true
     },
     active: {
         type: Boolean,
         default: true
     }
-
 }, {
 
     timestamps: true

@@ -17,6 +17,8 @@ require('./configs/passport.config')(app)
 require('./configs/views.configs')(app)
 require('./configs/locals.config')(app)
 
+//app.use()
+
 // Routes index
 require('./routes')(app)
 

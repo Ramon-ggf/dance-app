@@ -4,6 +4,9 @@ const router = express.Router()
 
 const Course = require("../models/course.model")
 
+const User = require('./../models/user.model')
+
+const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })
 
 router.get('/', (req, res, next) => {
 
@@ -18,22 +21,22 @@ router.get('/', (req, res, next) => {
                 // response.forEach(elm => {
 
                 //     if (req.user.id == elm.teacher[0]) {
-                        
+
                 //         isOwner.push(elm)
-                        
+
                 //     }
-                    
+
                 // })
 
                 //console.log(isOwner)
 
-                res.render('courses/courses-index', { response, isTeach: req.user.role.includes('TEACH')})
-           
-            } 
-                
-                res.render('courses/courses-index', { response })
+                res.render('courses/courses-index', { response, isTeach: req.user.role.includes('TEACH') })
 
-            
+            }
+
+            res.render('courses/courses-index', { response })
+
+
         })
 
         .catch(err => next(new Error(err)))
@@ -95,6 +98,19 @@ router.post('/cancel/:course_id', (req, res, next) => {
     Course
         .findByIdAndUpdate(courseId, { active: req.body }, { new: true })
         .then(() => res.redirect('/courses'))
+        .catch(err => next(new Error(err)))
+
+})
+
+router.post('/attend/:course_id', connectionChecker, (req, res, next) => {
+
+    const courseId = req.params.course_id
+
+    const userId = req.user.id
+
+    User
+        .findByIdAndUpdate(userId, { $push: { courses: courseId } }, { new: true })
+        .then(response => console.log(response))
         .catch(err => next(new Error(err)))
 
 })
