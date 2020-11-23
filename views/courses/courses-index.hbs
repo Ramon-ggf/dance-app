@@ -9,7 +9,12 @@
 
         <div class="col-md-6">
 
-            {{#each response}}
+            {{#if errorMsg}}
+            <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
+                {{errorMsg}}</p>
+            {{/if}}
+
+            {{#each isOwner}}
 
             <p>Nombre: {{name}}</p>
 
@@ -26,6 +31,15 @@
             </form>
             {{/if}}
 
+            {{/each}}
+
+            {{#each notOwner}}
+
+            <p>Nombre: {{name}}</p>
+
+            <form method="POST" action="/courses/attend/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
+            </form>
             {{/each}}
 
             {{#if isTeach}}

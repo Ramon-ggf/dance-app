@@ -1,29 +1,61 @@
-<h1>PERFIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIL</h1>
+ <h1>PERFIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIL</h1>
 
-<p>No eres nadie</p>
-
-
-<p>Solo puedes acudir a quedadas</p>
-
-{{#with response}}
-
+{{#with user}}
 <p>Nombre: {{name}}</p>
 <p>Apellidos: {{lastname}}</p>
 <p>Correo electrónico: {{email}}</p>
 <a href="/profile/edit">Editar perfil</a>
+{{/with}}
 
+{{#if isTeach}}
+<h2>Estas son tus clases como profe</h2>
 
-
-<h2>Tus encuentros</h2>
-<hr>
-{{#each meetups}}
+{{#each courses}}
     <p>Nombre: {{name}}</p>
     <p>Descripción: {{description}}</p>
     <p>Fecha: {{date}}</p>
     <hr>
 {{/each}}
 
-<h2>Tus clases</h2>
+<h2>Estas son tus clases como alumno</h2>
+{{#each user.courses}}
+    <p>Nombre: {{name}}</p>
+    <p>Descripción: {{description}}</p>
+    <p>Fecha: {{date}}</p>
+    <hr>
+{{/each}}
+{{/if}}
+
+{{#if isAlumni}}
+<h2>Estas son tus clases como alumno</h2>
+{{#each user.courses}}
+    <p>Nombre: {{name}}</p>
+    <p>Descripción: {{description}}</p>
+    <p>Fecha: {{date}}</p>
+    <hr>
+{{/each}}
+{{/if}}
+
+
+{{!--{{#with response}}
+
+<p>Nombre: {{name}}</p>
+<p>Apellidos: {{lastname}}</p>
+<p>Correo electrónico: {{email}}</p>
+<a href="/profile/edit">Editar perfil</a>--}}
+
+
+
+<h2>Tus encuentros</h2>
+<hr>
+{{#each user.meetups}}
+    <p>Nombre: {{name}}</p>
+    <p>Descripción: {{description}}</p>
+    <p>Fecha: {{date}}</p>
+    <hr>
+{{/each}}
+
+{{!--<h2>Tus clases</h2>
 <hr>
 {{#each courses}}
     <p>Nombre: {{name}}</p>
@@ -39,7 +71,7 @@
 
 {{#if isAlumni}}
 <p>Eres un alumno</p>
-{{/if}}
+{{/if}} --}}
 
 {{!-- ver tus clases --}}
 {{!-- ver tus quedadas --}}

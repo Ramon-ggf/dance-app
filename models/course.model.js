@@ -28,11 +28,11 @@ const courseSchema = new Schema({
         },
         coordinates: [Number]
     },
-    teacher: {
-        type: [Schema.Types.ObjectId],
+    teacher: [{
+        type: Schema.Types.ObjectId,
         ref: 'User',
         unique: true
-    },
+    }],
     active: {
         type: Boolean,
         default: true

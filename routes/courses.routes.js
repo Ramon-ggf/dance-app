@@ -7,6 +7,7 @@ const Course = require("../models/course.model")
 const User = require('./../models/user.model')
 
 const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })
+const roleChecker = admittedRoles => (req, res, next) => admittedRoles.includes(req.user.role) ? next() : res.render('courses/courses-index', { errorMsg: 'Ve a tu perfil y actuliza tu estatus' })
 
 router.get('/',  (req, res, next) => {
 
@@ -18,23 +19,25 @@ router.get('/',  (req, res, next) => {
 
                  const isTeach = req.user.role.includes('TEACH')
 
-            //     // let isOwner = []
+                 let isOwner = []
+                 let notOwner = []
 
-            //     // response.forEach(elm => {
+                response.forEach(elm => {
 
-            //     //     if (req.user.id == elm.teacher[0]) {
+                    if (req.user.id == elm.teacher[0]) {
 
-            //     //         isOwner.push(elm)
+                        isOwner.push(elm)
 
-            //     //     }
+                    } else {
 
-            //     // })
+                        notOwner.push(elm)
+                    }
 
-            //     //console.log(isOwner)
+                })
+                 
+                 console.log(isOwner)
 
-                 console.log(isTeach)
-
-                 res.render('courses/courses-index', { response, isTeach })
+                 res.render('courses/courses-index', { isOwner, notOwner, isTeach })
 
             } else {
                 
@@ -106,7 +109,7 @@ router.post('/cancel/:course_id', (req, res, next) => {
 
 })
 
-router.post('/attend/:course_id', connectionChecker, (req, res, next) => {
+router.post('/attend/:course_id', connectionChecker, roleChecker(['TEACH', 'ALUM']), (req, res, next) => {
 
     const courseId = req.params.course_id
 
