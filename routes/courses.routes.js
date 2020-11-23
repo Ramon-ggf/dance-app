@@ -8,35 +8,39 @@ const User = require('./../models/user.model')
 
 const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })
 
-router.get('/', (req, res, next) => {
+router.get('/',  (req, res, next) => {
 
     Course
         .find({ active: true })
         .then(response => {
 
-            if (req.isAuthenticated()) {
+             if (req.isAuthenticated()) {
 
-                // let isOwner = []
+                 const isTeach = req.user.role.includes('TEACH')
 
-                // response.forEach(elm => {
+            //     // let isOwner = []
 
-                //     if (req.user.id == elm.teacher[0]) {
+            //     // response.forEach(elm => {
 
-                //         isOwner.push(elm)
+            //     //     if (req.user.id == elm.teacher[0]) {
 
-                //     }
+            //     //         isOwner.push(elm)
 
-                // })
+            //     //     }
 
-                //console.log(isOwner)
+            //     // })
 
-                res.render('courses/courses-index', { response, isTeach: req.user.role.includes('TEACH') })
+            //     //console.log(isOwner)
+
+                 console.log(isTeach)
+
+                 res.render('courses/courses-index', { response, isTeach })
+
+            } else {
+                
+                res.render('courses/courses-index', { response })
 
             }
-
-            res.render('courses/courses-index', { response })
-
-
         })
 
         .catch(err => next(new Error(err)))
@@ -110,7 +114,7 @@ router.post('/attend/:course_id', connectionChecker, (req, res, next) => {
 
     User
         .findByIdAndUpdate(userId, { $push: { courses: courseId } }, { new: true })
-        .then(response => console.log(response))
+        .then(() => res.redirect('/courses'))
         .catch(err => next(new Error(err)))
 
 })

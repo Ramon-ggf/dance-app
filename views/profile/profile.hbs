@@ -5,12 +5,34 @@
 
 <p>Solo puedes acudir a quedadas</p>
 
-{{#with user}}
+{{#with response}}
 
 <p>Nombre: {{name}}</p>
+<p>Apellidos: {{lastname}}</p>
+<p>Correo electrónico: {{email}}</p>
+<a href="/profile/edit">Editar perfil</a>
+
+
+
+<h2>Tus encuentros</h2>
+<hr>
+{{#each meetups}}
+    <p>Nombre: {{name}}</p>
+    <p>Descripción: {{description}}</p>
+    <p>Fecha: {{date}}</p>
+    <hr>
+{{/each}}
+
+<h2>Tus clases</h2>
+<hr>
+{{#each courses}}
+    <p>Nombre: {{name}}</p>
+    <p>Descripción: {{description}}</p>
+    <p>Fecha: {{date}}</p>
+    <hr>
+{{/each}}
 
 {{/with}}
-
 {{#if isTeach}}
 <p>Eres un profe</p>
 {{/if}}
@@ -18,3 +40,6 @@
 {{#if isAlumni}}
 <p>Eres un alumno</p>
 {{/if}}
+
+{{!-- ver tus clases --}}
+{{!-- ver tus quedadas --}}

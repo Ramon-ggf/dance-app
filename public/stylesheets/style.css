@@ -6,4 +6,12 @@ body {
   margin: 30px;
   justify-content: space-around; }
 
+#myCoursesMap {
+  height: 500px;
+  background-color: red; }
+
+#myMeetsMap {
+  height: 500px;
+  background-color: green; }
+
 /*# sourceMappingURL=style.css.map */

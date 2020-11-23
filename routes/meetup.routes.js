@@ -9,6 +9,7 @@ const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : r
 
 router.get('/', (req, res, next) => {
 
+
     Meetup
         .find({ active: true })
         .then(response => res.render('meetups/meetup-index', { response }))
@@ -57,7 +58,7 @@ router.post('/edit/:meetup_id', (req, res, next) => {
 
     Meetup
         .findByIdAndUpdate(meetId, { name, description, date, location }, { new: true })
-        .then(response => console.log(response))
+        .then(() => res.redirect('/meetup'))
         .catch(err => next(new Error(err)))
 })
 
@@ -80,9 +81,11 @@ router.post('/attend/:meetup_id', connectionChecker, (req, res, next) => {
 
     const userId = req.user.id
 
+    
+
     User
         .findByIdAndUpdate(userId, { $push: { meetups: meetId } }, { new: true })
-        .then(response => console.log(response))
+        .then(() => res.redirect('/meetup'))
         .catch(err => next(new Error(err)))
 
 })

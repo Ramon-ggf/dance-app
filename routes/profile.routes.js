@@ -9,8 +9,14 @@ const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : r
 
 router.get('/', connectionChecker, (req, res) => {
 
+    const userId = req.user.id
 
-    res.render('profile/profile', { user: req.user, isTeach: req.user.role.includes('TEACH'), isAlumni: req.user.role.includes('ALUM')})
+    User
+        .findById(userId)
+        .populate('courses')
+        .populate('meetups')
+        .then(response => res.render('profile/profile', { response, isTeach: req.user.role.includes('TEACH'), isAlumni: req.user.role.includes('ALUM')}))
+
 
 })
 

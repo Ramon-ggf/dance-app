@@ -27,16 +27,16 @@ const userSchema = new Schema({
         enum: ['TEACH', 'ALUM', 'GUEST'],
         default: 'GUEST'
     },
-    courses: {
-        type: [Schema.Types.ObjectId],
+    courses: [{
+        type: Schema.Types.ObjectId,
         ref: 'Course',
         unique: true
-    },
-    meetups: {
-        type: [Schema.Types.ObjectId],
+    }],
+    meetups: [{
+        type: Schema.Types.ObjectId,
         ref: 'Meetup',
         unique: true
-    }
+    }]
 }, {
 
 timestamps: true

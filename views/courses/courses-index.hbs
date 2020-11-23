@@ -1,29 +1,79 @@
-<h1>CLASEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSS</h1>
+<div class="container">
 
-{{#each response}}
+    <h1>CLASEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSS</h1>
+    <div class="row">
 
-<p>Nombre: {{name}}</p>
+        <div class="col-md-6">
+            <div id="myCoursesMap"></div>
+        </div>
 
-{{!-- {{#if isTeach}} --}}
+        <div class="col-md-6">
 
+            {{#each response}}
 
-<a href="/courses/edit/{{id}}">Editar detalle</a>
+            <p>Nombre: {{name}}</p>
 
-<form method="POST" action="/courses/cancel/{{id}}">
-    <button name="active" type="submit" class="btn btn-light">Cancelar</button>
-</form>
-
-<form method="POST" action="/courses/attend/{{id}}">
-    <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
-</form>
-
-{{!-- {{/if}} --}}
-
-{{/each}}
+            <form method="POST" action="/courses/attend/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
+            </form>
 
 
+            {{#if ../isTeach}}
+            <a href="/courses/edit/{{id}}">Editar detalle</a>
+
+            <form method="POST" action="/courses/cancel/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
+            {{/if}}
+
+            {{/each}}
+
+            {{#if isTeach}}
+            <a href="/courses/new"> Crear nueva clase</a>
+            {{/if}}
+
+        </div>
+
+    </div>
 
 
-{{#if isTeach}}
-<p>Crear nueva clase</p>
-{{/if}}
+
+</div>
+
+
+{{!-- <h1>CLASEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSS</h1>
+
+    {{#each response}}
+
+    <p>Nombre: {{name}}</p>
+
+    {{#if userLocal}}
+
+
+    <a href="/courses/edit/{{id}}">Editar detalle</a>
+
+    <form method="POST" action="/courses/cancel/{{id}}">
+        <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+    </form>
+
+    <form method="POST" action="/courses/attend/{{id}}">
+        <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
+    </form>
+
+   {{/if}}
+
+    {{/each}}
+
+
+
+
+    {{#if isTeach}}
+    <a href="/courses/new" Crear nueva clase</a>
+        {{/if}} --}}
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+{{!-- <script src="/javascripts/mapstyles.js"></script> --}}
+<script src="/javascripts/maps/courses-map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{APIkey}}&callback=initMap"></script>

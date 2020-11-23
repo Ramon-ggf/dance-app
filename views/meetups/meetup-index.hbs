@@ -1,17 +1,40 @@
-<h1>QUEDADASSSS</h1>
+<div class="container">
 
-{{#each response}}
+    <h1>QUEDADASSSS</h1>
+    <div class="row">
 
-<p>Nombre: {{name}}</p>
+        <div class="col-md-6">
+            <div id="myMeetsMap"></div>
+        </div>
 
-<a href="/meetup/edit/{{id}}">Edita el encuentro</a>
+        <div class="col-md-6">
 
-<form method="POST" action="/meetup/cancel/{{id}}">
-    <button name="active" type="submit" class="btn btn-light">Cancelar</button>
-</form>
+            {{#each response}}
 
+            <p>Nombre: {{name}}</p>
+            
+          
+            <a href="/meetup/edit/{{id}}">Edita el encuentro</a>
+            
+            <form method="POST" action="/meetup/cancel/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
+            
 
-<form method="POST" action="/meetup/attend/{{id}}">
-    <button name="assistants" type="submit" class="btn btn-light">Asistir al evento</button>
-</form>
-{{/each}}
+            <form method="POST" action="/meetup/attend/{{id}}">
+                <button name="assistants" type="submit" class="btn btn-light">Asistir al evento</button>
+            </form>
+            {{/each}}
+
+            <a href="/meetup/new">Crear encuentro</a>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+{{!-- <script src="/javascripts/mapstyles.js"></script> --}}
+<script src="/javascripts/maps/meets-map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{APIkey}}&callback=initMap"></script>
