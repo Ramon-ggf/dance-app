@@ -11,12 +11,12 @@ router.get('/', connectionChecker, (req, res, next) => {
 
     const userId = req.user.id
 
-    const coursePromise = Course.find({ teacher: userId })
+    const coursePromise = Course.find({ teacher: userId, active: true })
     const userPromise = User.findById(userId).populate('courses').populate('meetups')
-    //const meetupPromise = 
+    const meetupPromise = Meetup.find({ owner: userId})
 
-    Promise.all([coursePromise, userPromise])
-        .then(response => res.render('profile/profile', { courses: response[0], user: response[1], isTeach: req.user.role.includes('TEACH'), isAlumni: req.user.role.includes('ALUM')}))
+    Promise.all([coursePromise, userPromise, meetupPromise])
+        .then(response => res.render('profile/profile', { courses: response[0], user: response[1], meetupsOwner: response[2], isTeach: req.user.role.includes('TEACH'), isAlumni: req.user.role.includes('ALUM')}))
         .catch(err => next(new Error(err)))
 
 })

@@ -14,6 +14,13 @@
                 {{errorMsg}}</p>
             {{/if}}
 
+            <select class="custom-select custom-select-sm">
+                <option selected>Open this select menu</option>
+                <option id="select-bar" value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+
             {{#each isOwner}}
 
             <p>Nombre: {{name}}</p>
@@ -35,6 +42,7 @@
             <form method="POST" action="/courses/attend/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
             </form>
+
             {{/each}}
 
             {{#if isTeach}}
@@ -43,7 +51,7 @@
 
             {{#each response}}
 
-             <p>Nombre: {{name}}</p>
+            <p>Nombre: {{name}}</p>
 
             <form method="POST" action="/courses/attend/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
@@ -55,40 +63,8 @@
 
     </div>
 
-
-
 </div>
 
-
-{{!-- <h1>CLASEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSS</h1>
-
-    {{#each response}}
-
-    <p>Nombre: {{name}}</p>
-
-    {{#if userLocal}}
-
-
-    <a href="/courses/edit/{{id}}">Editar detalle</a>
-
-    <form method="POST" action="/courses/cancel/{{id}}">
-        <button name="active" type="submit" class="btn btn-light">Cancelar</button>
-    </form>
-
-    <form method="POST" action="/courses/attend/{{id}}">
-        <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
-    </form>
-
-   {{/if}}
-
-    {{/each}}
-
-
-
-
-    {{#if isTeach}}
-    <a href="/courses/new" Crear nueva clase</a>
-        {{/if}} --}}
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

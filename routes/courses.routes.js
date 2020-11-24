@@ -1,15 +1,15 @@
 const express = require("express")
 const router = express.Router()
-//const passport = require("passport")
 
 const Course = require("../models/course.model")
 
 const User = require('./../models/user.model')
 
 const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })
-const roleChecker = admittedRoles => (req, res, next) => admittedRoles.includes(req.user.role) ? next() : res.render('courses/courses-index', { errorMsg: 'Ve a tu perfil y actuliza tu estatus' })
+const roleChecker = admittedRoles => (req, res, next) => admittedRoles.includes(req.user.role) ? next() :  res.redirect('/courses') //TO DO
 
 router.get('/', (req, res, next) => {
+
 
     Course
         .find({ active: true })
@@ -48,7 +48,6 @@ router.post('/new', (req, res, next) => {
 
     Course
         .create({ name, style, description, date, location, teacher: req.user.id })
-        //.then(response => console.log(response))
         .then(() => res.redirect('/courses'))
         .catch(err => next(new Error(err)))
 
