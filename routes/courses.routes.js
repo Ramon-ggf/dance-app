@@ -9,38 +9,24 @@ const User = require('./../models/user.model')
 const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })
 const roleChecker = admittedRoles => (req, res, next) => admittedRoles.includes(req.user.role) ? next() : res.render('courses/courses-index', { errorMsg: 'Ve a tu perfil y actuliza tu estatus' })
 
-router.get('/',  (req, res, next) => {
+router.get('/', (req, res, next) => {
 
     Course
         .find({ active: true })
         .then(response => {
 
-             if (req.isAuthenticated()) {
+            if (req.isAuthenticated()) {
 
-                 const isTeach = req.user.role.includes('TEACH')
+                const isTeach = req.user.role.includes('TEACH')
 
-                 let isOwner = []
-                 let notOwner = []
+                const isOwner = response.filter(elm => elm.teacher[0] == req.user.id)
 
-                response.forEach(elm => {
+                const notOwner = response.filter(elm => elm.teacher[0] != req.user.id)
 
-                    if (req.user.id == elm.teacher[0]) {
-
-                        isOwner.push(elm)
-
-                    } else {
-
-                        notOwner.push(elm)
-                    }
-
-                })
-                 
-                 console.log(isOwner)
-
-                 res.render('courses/courses-index', { isOwner, notOwner, isTeach })
+                res.render('courses/courses-index', { isOwner, notOwner, isTeach })
 
             } else {
-                
+
                 res.render('courses/courses-index', { response })
 
             }

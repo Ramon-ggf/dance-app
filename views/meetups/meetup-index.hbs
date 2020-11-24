@@ -9,7 +9,9 @@
 
         <div class="col-md-6">
 
-            {{#each response}}
+            {{#if isLogged}}
+
+            {{#each isOwner}}
 
             <p>Nombre: {{name}}</p>
             
@@ -20,13 +22,32 @@
                 <button name="active" type="submit" class="btn btn-light">Cancelar</button>
             </form>
             
+            {{/each}}
 
-            <form method="POST" action="/meetup/attend/{{id}}">
+            {{/if}}
+
+            {{#each notOwner}}
+
+             <p>Nombre: {{name}}</p>
+               <form method="POST" action="/meetup/attend/{{id}}">
                 <button name="assistants" type="submit" class="btn btn-light">Asistir al evento</button>
             </form>
             {{/each}}
 
+            {{#if isLogged}}
+
             <a href="/meetup/new">Crear encuentro</a>
+            
+            {{/if}}
+
+            {{#each response}}
+
+            <p>Nombre: {{name}}</p>
+               <form method="POST" action="/meetup/attend/{{id}}">
+                <button name="assistants" type="submit" class="btn btn-light">Asistir al evento</button>
+            </form>
+
+            {{/each}}
 
         </div>
 

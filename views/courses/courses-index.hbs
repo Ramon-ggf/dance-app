@@ -18,11 +18,6 @@
 
             <p>Nombre: {{name}}</p>
 
-            <form method="POST" action="/courses/attend/{{id}}">
-                <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
-            </form>
-
-
             {{#if ../isTeach}}
             <a href="/courses/edit/{{id}}">Editar detalle</a>
 
@@ -45,6 +40,16 @@
             {{#if isTeach}}
             <a href="/courses/new"> Crear nueva clase</a>
             {{/if}}
+
+            {{#each response}}
+
+             <p>Nombre: {{name}}</p>
+
+            <form method="POST" action="/courses/attend/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
+            </form>
+
+            {{/each}}
 
         </div>
 

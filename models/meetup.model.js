@@ -23,6 +23,11 @@ const meetupSchema = new Schema({
         },
         coordinates: [Number]
     },
+    owner: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        unique: true
+    }],
     active: {
         type: Boolean,
         default: true

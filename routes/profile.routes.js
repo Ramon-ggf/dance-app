@@ -1,10 +1,9 @@
 const express = require("express")
-const Course = require("../models/course.model")
 const router = express.Router()
-//const passport = require("passport")
 
 const User = require("../models/user.model")
-
+const Course = require("../models/course.model")
+const Meetup = require("./../models/meetup.model")
 
 const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })
 
@@ -14,17 +13,11 @@ router.get('/', connectionChecker, (req, res, next) => {
 
     const coursePromise = Course.find({ teacher: userId })
     const userPromise = User.findById(userId).populate('courses').populate('meetups')
+    //const meetupPromise = 
 
     Promise.all([coursePromise, userPromise])
         .then(response => res.render('profile/profile', { courses: response[0], user: response[1], isTeach: req.user.role.includes('TEACH'), isAlumni: req.user.role.includes('ALUM')}))
         .catch(err => next(new Error(err)))
-
-    // User
-    //     .findById(userId)
-    //     .populate('courses')
-    //     .populate('meetups')
-    //     .then(response => res.render('profile/profile', { response, isTeach: req.user.role.includes('TEACH'), isAlumni: req.user.role.includes('ALUM')}))
-
 
 })
 

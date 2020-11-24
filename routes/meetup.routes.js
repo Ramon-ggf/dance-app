@@ -12,11 +12,29 @@ router.get('/', (req, res, next) => {
 
     Meetup
         .find({ active: true })
-        .then(response => res.render('meetups/meetup-index', { response }))
+        .then(response => {
+
+            if (req.isAuthenticated()) {
+
+                const isLogged = true
+
+                const isOwner = response.filter(elm => elm.owner[0] == req.user.id)
+
+                const notOwner = response.filter(elm => elm.owner[0] != req.user.id)
+
+                res.render('meetups/meetup-index', { isOwner, notOwner, isLogged })
+
+            } else {
+
+                res.render('meetups/meetup-index', { response })
+            }
+
+
+        })
         .catch(err => next(new Error(err)))
 })
 
-router.get('/new', (req, res, next) => res.render('meetups/new-meetup'))
+router.get('/new', connectionChecker, (req, res, next) => res.render('meetups/new-meetup'))
 
 router.post('/new', (req, res, next) => {
 
@@ -28,7 +46,7 @@ router.post('/new', (req, res, next) => {
     }
 
     Meetup
-        .create({ name, description, date, location })
+        .create({ name, description, date, location, owner: req.user.id })
         .then(() => res.redirect('/meetup'))
         .catch(err => next(new Error(err)))
 
@@ -81,7 +99,7 @@ router.post('/attend/:meetup_id', connectionChecker, (req, res, next) => {
 
     const userId = req.user.id
 
-    
+
 
     User
         .findByIdAndUpdate(userId, { $push: { meetups: meetId } }, { new: true })
