@@ -16,7 +16,7 @@
 
             <form action="/courses/search" method="POST">
                 <select name="styles" class="custom-select custom-select-sm">
-                    <option selected>Open this select menu</option>
+                    <option value="none">Open this select menu</option>
                     <option value="Salsa casino">Salsa casino</option>
                     <option value="Bachata">Bachata</option>
                     <option value="Hip-hop">Hip-hop</option>
@@ -40,7 +40,9 @@
             <p>Nombre: {{name}}</p>
 
             {{#if ../isTeach}}
-            <a href="/courses/edit/{{id}}">Editar detalle</a>
+            <a href="/courses/edit/{{id}}">Editar clase</a>
+
+            <a href="/courses/{{id}}"> Ver detalles</a>
 
             <form method="POST" action="/courses/cancel/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Cancelar</button>
@@ -56,11 +58,13 @@
             <form method="POST" action="/courses/attend/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
             </form>
+            
+            <a href="/courses/{{id}}"> Ver detalles</a>
 
             {{/each}}
 
             {{#if isTeach}}
-            <a href="/courses/new"> Crear nueva clase</a>
+            <a href="/courses/new"> Crear nueva clase </a>
             {{/if}}
 
             {{#each response}}
@@ -70,6 +74,8 @@
             <form method="POST" action="/courses/attend/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
             </form>
+
+            <a href="/courses/{{id}}"> Ver detalles</a>
 
             {{/each}}
 

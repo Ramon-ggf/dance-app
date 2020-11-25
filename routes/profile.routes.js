@@ -16,7 +16,7 @@ router.get('/', connectionChecker, (req, res, next) => {
 
     const coursePromise = Course.find({ teacher: userId, active: true })
     const userPromise = User.findById(userId).populate('courses').populate('meetups')
-    const meetupPromise = Meetup.find({ owner: userId })
+    const meetupPromise = Meetup.find({ owner: userId, active: true })
 
     Promise.all([coursePromise, userPromise, meetupPromise])
         .then(response => res.render('profile/profile', { courses: response[0], user: response[1], meetupsOwner: response[2], isTeach: req.user.role.includes('TEACH'), isAlumni: req.user.role.includes('ALUM') }))
@@ -26,7 +26,7 @@ router.get('/', connectionChecker, (req, res, next) => {
 
 router.get('/edit', (req, res, next) => {
 
-    res.render('profile/profile-edit', { user: req.user, isTeach: req.user.role.includes('TEACH')})
+    res.render('profile/profile-edit', { user: req.user, isTeach: req.user.role.includes('TEACH') })
 
 })
 
@@ -35,18 +35,11 @@ router.post('/edit/profile-picture', connectionChecker, cloudUpload.single('img'
 
 
     const userId = req.user.id
-    console.log(req.file.path)
 
-    Picture
-        .create({
-            path: req.file.path,
-            originalName: req.file.originalname
-        })
-        .then(response => console.log(response, userId))
-        .catch(err => next(new Error(err)))
-    
-    User
-        .findByIdAndUpdate(userId, { img: req.file.path })
+    const picturePromise = Picture.create({ path: req.file.path, originalName: req.file.originalname })
+    const userPromise = User.findByIdAndUpdate(userId, { img: req.file.path })
+
+    Promise.all([picturePromise, userPromise])
         .then(() => res.redirect('/profile'))
         .catch(err => next(new Error(err)))
 

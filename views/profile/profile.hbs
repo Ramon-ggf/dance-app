@@ -33,6 +33,13 @@
             <p>Descripción: {{description}}</p>
             <p>Fecha: {{date}}</p>
             <hr>
+
+            <a href="/courses/edit/{{id}}">Editar clase</a>
+
+            <form method="POST" action="/courses/cancel/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
+
             {{/each}}
 
             <h2>Estas son tus clases como alumno</h2>
@@ -41,6 +48,10 @@
             <p>Descripción: {{description}}</p>
             <p>Fecha: {{date}}</p>
             <hr>
+
+            <form method="POST" action="/courses/cancelattend/{{id}}">
+                <button name="courses" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
             {{/each}}
             {{/if}}
 
@@ -51,6 +62,9 @@
             <p>Descripción: {{description}}</p>
             <p>Fecha: {{date}}</p>
             <hr>
+            <form method="POST" action="/courses/cancelattend/{{id}}">
+                <button name="courses" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
             {{/each}}
             {{/if}}
 
@@ -70,9 +84,14 @@
             <p>Nombre: {{name}}</p>
             <p>Descripción: {{description}}</p>
             <p>Fecha: {{date}}</p>
+            
+
+            <a href="/meetup/edit/{{id}}">Edita el encuentro</a>
+
+            <form method="POST" action="/meetup/cancel/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
             <hr>
-            <p>cancelar</p>
-            <p>editar</p>
             {{/each}}
 
         </div>

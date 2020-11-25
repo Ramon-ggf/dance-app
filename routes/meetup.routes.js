@@ -86,8 +86,15 @@ router.post('/cancel/:meetup_id', (req, res, next) => {
 
     req.body = false
 
-    Meetup
-        .findByIdAndUpdate(meetId, { active: req.body }, { new: true })
+    const meetupPromise = Meetup.findByIdAndUpdate(meetId, { active: req.body }, { new: true })
+    const userPromise = User.updateMany({ meetups: meetId }, { $pull: { meetups: { $in: [meetId] } } }, { new: true })
+
+    // Meetup
+    //     .findByIdAndUpdate(meetId, { active: req.body }, { new: true })
+    //     .then(() => res.redirect('/meetup'))
+    //     .catch(err => next(new Error(err)))
+
+    Promise.all([meetupPromise, userPromise])
         .then(() => res.redirect('/meetup'))
         .catch(err => next(new Error(err)))
 
@@ -104,6 +111,17 @@ router.post('/attend/:meetup_id', connectionChecker, (req, res, next) => {
     User
         .findByIdAndUpdate(userId, { $push: { meetups: meetId } }, { new: true })
         .then(() => res.redirect('/meetup'))
+        .catch(err => next(new Error(err)))
+
+})
+
+router.get('/:meetup_id', (req, res, next) => {
+
+    const meetId = req.params.meetup_id
+
+    Meetup
+        .findById(meetId)
+        .then(response => res.render('meetups/details-meetup', response))
         .catch(err => next(new Error(err)))
 
 })

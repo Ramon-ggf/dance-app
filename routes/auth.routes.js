@@ -13,7 +13,6 @@ router.get('/signup', (req, res, next) => res.render('auth/signup'))
 
 router.post('/signup', (req, res, next) => {
 
-    console.log(req.body)
 
     const { name, lastname, email, password, role } = req.body
 

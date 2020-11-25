@@ -18,6 +18,10 @@ const courseSchema = new Schema({
         required: true,
         trim: true
     },
+    image: {
+        type: String,
+        default: 'https://blog.netsarang.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'
+    },
     date: {
         type: String,
         required: true
