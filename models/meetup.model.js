@@ -27,8 +27,8 @@ const meetupSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: "User",
-            sparse: true,
-        },
+            sparse: true
+        }
     ],
     active: {
         type: Boolean,

@@ -35,16 +35,16 @@ const userSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: "Course",
-            sparse: true,
-        },
+            sparse: true
+        }
     ],
     meetups: [
         {
             type: Schema.Types.ObjectId,
             ref: "Meetup",
-            sparse: true,
-        },
-    ],
+            sparse: true
+        }
+    ]
 
 }, {
 
