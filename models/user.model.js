@@ -12,9 +12,14 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
+    img: {
+        type: String,
+        default: 'https://blog.netsarang.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'
+    },
     email: {
         type: String,
         required: true,
+        unique: true,
         trim: true
     },
     password: {
@@ -27,19 +32,24 @@ const userSchema = new Schema({
         enum: ['TEACH', 'ALUM', 'GUEST'],
         default: 'GUEST'
     },
-    courses: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Course',
-        unique: true
-    }],
-    meetups: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Meetup',
-        unique: true
-    }]
+    courses: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Course",
+            sparse: true
+        }
+    ],
+    meetups: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Meetup",
+            sparse: true
+        }
+    ]
+
 }, {
 
-timestamps: true
+    timestamps: true
 
 })
 

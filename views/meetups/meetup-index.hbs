@@ -13,23 +13,27 @@
 
             {{#each isOwner}}
 
-            <p>Nombre: {{name}}</p>
-            
-          
+            <p>Nombre del encuentro: {{name}}</p>
+
+            <a href="/meetup/{{id}}"> Ver detalles</a>
+
             <a href="/meetup/edit/{{id}}">Edita el encuentro</a>
-            
+
             <form method="POST" action="/meetup/cancel/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Cancelar</button>
             </form>
-            
+
             {{/each}}
 
             {{/if}}
 
             {{#each notOwner}}
 
-             <p>Nombre: {{name}}</p>
-               <form method="POST" action="/meetup/attend/{{id}}">
+            <p>Nombre: {{name}}</p>
+
+            <a href="/meetup/{{id}}"> Ver detalles</a>
+
+            <form method="POST" action="/meetup/attend/{{id}}">
                 <button name="assistants" type="submit" class="btn btn-light">Asistir al evento</button>
             </form>
             {{/each}}
@@ -37,13 +41,16 @@
             {{#if isLogged}}
 
             <a href="/meetup/new">Crear encuentro</a>
-            
+
             {{/if}}
 
             {{#each response}}
 
             <p>Nombre: {{name}}</p>
-               <form method="POST" action="/meetup/attend/{{id}}">
+
+            <a href="/meetup/{{id}}"> Ver detalles</a>
+            
+            <form method="POST" action="/meetup/attend/{{id}}">
                 <button name="assistants" type="submit" class="btn btn-light">Asistir al evento</button>
             </form>
 

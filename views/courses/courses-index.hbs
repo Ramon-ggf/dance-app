@@ -14,12 +14,35 @@
                 {{errorMsg}}</p>
             {{/if}}
 
+            <form action="/courses/search" method="POST">
+                <select name="styles" class="custom-select custom-select-sm">
+                    <option value="none">Open this select menu</option>
+                    <option value="Salsa casino">Salsa casino</option>
+                    <option value="Bachata">Bachata</option>
+                    <option value="Hip-hop">Hip-hop</option>
+                    <option value="Afrobeats">Afrobeats</option>
+                    <option value="Tango">Tango</option>
+                    <option value="Twist">Twist</option>
+                    <option value="Flamenco">Flamenco</option>
+                    <option value="Reggeaton">Reggeaton</option>
+                    <option value="Twerk">Twerk</option>
+                    <option value="Funky">Funky</option>
+                    <option value="Zumba">Zumba</option>
+                    <option value="Dancehall">Dancehall</option>
+                </select>
+
+                <button type="submit">Filtrar</button>
+            </form>
+
+
             {{#each isOwner}}
 
             <p>Nombre: {{name}}</p>
 
             {{#if ../isTeach}}
-            <a href="/courses/edit/{{id}}">Editar detalle</a>
+            <a href="/courses/edit/{{id}}">Editar clase</a>
+
+            <a href="/courses/{{id}}"> Ver detalles</a>
 
             <form method="POST" action="/courses/cancel/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Cancelar</button>
@@ -35,19 +58,24 @@
             <form method="POST" action="/courses/attend/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
             </form>
+            
+            <a href="/courses/{{id}}"> Ver detalles</a>
+
             {{/each}}
 
             {{#if isTeach}}
-            <a href="/courses/new"> Crear nueva clase</a>
+            <a href="/courses/new"> Crear nueva clase </a>
             {{/if}}
 
             {{#each response}}
 
-             <p>Nombre: {{name}}</p>
+            <p>Nombre: {{name}}</p>
 
             <form method="POST" action="/courses/attend/{{id}}">
                 <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
             </form>
+
+            <a href="/courses/{{id}}"> Ver detalles</a>
 
             {{/each}}
 
@@ -55,40 +83,8 @@
 
     </div>
 
-
-
 </div>
 
-
-{{!-- <h1>CLASEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSS</h1>
-
-    {{#each response}}
-
-    <p>Nombre: {{name}}</p>
-
-    {{#if userLocal}}
-
-
-    <a href="/courses/edit/{{id}}">Editar detalle</a>
-
-    <form method="POST" action="/courses/cancel/{{id}}">
-        <button name="active" type="submit" class="btn btn-light">Cancelar</button>
-    </form>
-
-    <form method="POST" action="/courses/attend/{{id}}">
-        <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
-    </form>
-
-   {{/if}}
-
-    {{/each}}
-
-
-
-
-    {{#if isTeach}}
-    <a href="/courses/new" Crear nueva clase</a>
-        {{/if}} --}}
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

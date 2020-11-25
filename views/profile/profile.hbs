@@ -1,77 +1,101 @@
- <h1>PERFIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIL</h1>
+<div class="container main">
 
-{{#with user}}
-<p>Nombre: {{name}}</p>
-<p>Apellidos: {{lastname}}</p>
-<p>Correo electrónico: {{email}}</p>
-<a href="/profile/edit">Editar perfil</a>
-{{/with}}
+    <div class="row">
 
-{{#if isTeach}}
-<h2>Estas son tus clases como profe</h2>
+        <div class="col-md-4">
 
-{{#each courses}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
+            {{#with user}}
 
-<h2>Estas son tus clases como alumno</h2>
-{{#each user.courses}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
-{{/if}}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{img}}" alt="Card image cap" class="rounded">
+                <div class="card-body">
+                    <a href="/profile/edit" class="card-link">Editar foto de perfil</a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{name}} {{lastname}}</h5>
+                    <h5 class="card-title">{{email}}</h5>
+                </div>
+                <div class="card-body">
+                    <a href="/profile/edit" class="card-link">Editar perfil</a>
+                </div>
+            </div>
+        </div>
 
-{{#if isAlumni}}
-<h2>Estas son tus clases como alumno</h2>
-{{#each user.courses}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
-{{/if}}
+        {{/with}}
+
+        <div class="col-md-8">
+
+            {{#if isTeach}}
+            <h2>Estas son tus clases como profe</h2>
+
+            {{#each courses}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+
+            <a href="/courses/edit/{{id}}">Editar clase</a>
+
+            <form method="POST" action="/courses/cancel/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
+
+            {{/each}}
+
+            <h2>Estas son tus clases como alumno</h2>
+            {{#each user.courses}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+
+            <form method="POST" action="/courses/cancelattend/{{id}}">
+                <button name="courses" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
+            {{/each}}
+            {{/if}}
+
+            {{#if isAlumni}}
+            <h2>Estas son tus clases como alumno</h2>
+            {{#each user.courses}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+            <form method="POST" action="/courses/cancelattend/{{id}}">
+                <button name="courses" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
+            {{/each}}
+            {{/if}}
 
 
-{{!--{{#with response}}
+            <h2>Tus encuentros</h2>
+            <hr>
+            {{#each user.meetups}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+            {{/each}}
 
-<p>Nombre: {{name}}</p>
-<p>Apellidos: {{lastname}}</p>
-<p>Correo electrónico: {{email}}</p>
-<a href="/profile/edit">Editar perfil</a>--}}
+            <h2>Estos son los encuentros que has organizado</h2>
+            <hr>
+            {{#each meetupsOwner}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            
 
+            <a href="/meetup/edit/{{id}}">Edita el encuentro</a>
 
+            <form method="POST" action="/meetup/cancel/{{id}}">
+                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+            </form>
+            <hr>
+            {{/each}}
 
-<h2>Tus encuentros</h2>
-<hr>
-{{#each user.meetups}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
+        </div>
 
-{{!--<h2>Tus clases</h2>
-<hr>
-{{#each courses}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
+    </div>
 
-{{/with}}
-{{#if isTeach}}
-<p>Eres un profe</p>
-{{/if}}
-
-{{#if isAlumni}}
-<p>Eres un alumno</p>
-{{/if}} --}}
-
-{{!-- ver tus clases --}}
-{{!-- ver tus quedadas --}}
+</div>

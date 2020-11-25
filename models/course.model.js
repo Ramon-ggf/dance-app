@@ -18,6 +18,10 @@ const courseSchema = new Schema({
         required: true,
         trim: true
     },
+    image: {
+        type: String,
+        default: 'https://blog.netsarang.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'
+    },
     date: {
         type: String,
         required: true
@@ -28,11 +32,13 @@ const courseSchema = new Schema({
         },
         coordinates: [Number]
     },
-    teacher: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        unique: true
-    }],
+    teacher: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            sparse: true
+        }
+    ],
     active: {
         type: Boolean,
         default: true

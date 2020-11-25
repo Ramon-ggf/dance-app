@@ -8,7 +8,8 @@
 
                 <div class='form-group'>
                     <label for='name'>Nombre</label>
-                    <input name='name' type='text' class='form-control' placeholder='nombre' id='name' value="{{user.name}}" required>
+                    <input name='name' type='text' class='form-control' placeholder='nombre' id='name'
+                        value="{{user.name}}" required>
                 </div>
 
                 <div class='form-group'>
@@ -19,7 +20,8 @@
 
                 <div class='form-group'>
                     <label for='email'>Correo electrónico</label>
-                    <input name='email' type='text' class='form-control' placeholder='Email' id='email' value="{{user.email}}" required>
+                    <input name='email' type='text' class='form-control' placeholder='Email' id='email'
+                        value="{{user.email}}" required>
                 </div>
 
                 <div class='form-group'>
@@ -43,12 +45,23 @@
                 </div>
 
                 <button type='submit' class='btn btn-dark btn-block'>Actualizar</button>
-                {{!-- {{#if errorMsg}}
-                <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
-                    {{errorMsg}}</p>
-                {{/if}} --}}
-            </form>
 
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <div class='form-group'>
+                <div class="custom-file">
+                    <form action="/profile/edit/profile-picture" method="POST" enctype="multipart/form-data">
+                        <label class="custom-file-label" for='img'>Imagen de perfil</label>
+                        <input name='img' type="file" class="custom-file-input" placeholder='Selecciona un archivo'
+                            id='img'>
+
+                        <button type='submit' class='btn btn-dark btn-block'>Actualizar</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
