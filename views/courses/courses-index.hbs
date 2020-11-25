@@ -14,12 +14,26 @@
                 {{errorMsg}}</p>
             {{/if}}
 
-            <select class="custom-select custom-select-sm">
-                <option selected>Open this select menu</option>
-                <option id="select-bar" value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
+            <form action="/courses/search" method="POST">
+                <select name="styles" class="custom-select custom-select-sm">
+                    <option selected>Open this select menu</option>
+                    <option value="Salsa casino">Salsa casino</option>
+                    <option value="Bachata">Bachata</option>
+                    <option value="Hip-hop">Hip-hop</option>
+                    <option value="Afrobeats">Afrobeats</option>
+                    <option value="Tango">Tango</option>
+                    <option value="Twist">Twist</option>
+                    <option value="Flamenco">Flamenco</option>
+                    <option value="Reggeaton">Reggeaton</option>
+                    <option value="Twerk">Twerk</option>
+                    <option value="Funky">Funky</option>
+                    <option value="Zumba">Zumba</option>
+                    <option value="Dancehall">Dancehall</option>
+                </select>
+
+                <button type="submit">Filtrar</button>
+            </form>
+
 
             {{#each isOwner}}
 

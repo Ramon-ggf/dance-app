@@ -35,6 +35,37 @@ router.get('/', (req, res, next) => {
         .catch(err => next(new Error(err)))
 })
 
+router.post('/search', (req, res, render) => {
+
+    const style = req.body.styles
+
+    console.log(style)
+
+    // Course
+    //     .find({ active: true, style: style })
+    //     .then(response => {
+
+    //         if (req.isAuthenticated()) {
+
+    //             const isTeach = req.user.role.includes('TEACH')
+
+    //             const isOwner = response.filter(elm => elm.teacher[0] == req.user.id)
+
+    //             const notOwner = response.filter(elm => elm.teacher[0] != req.user.id)
+
+    //             res.render('courses/courses-index', { isOwner, notOwner, isTeach })
+
+    //         } else {
+
+    //             res.render('courses/courses-index', { response })
+
+    //         }
+    //     })
+
+    //     .catch(err => next(new Error(err)))
+
+})
+
 router.get('/new', (req, res, next) => res.render('courses/new-course'))
 
 router.post('/new', (req, res, next) => {

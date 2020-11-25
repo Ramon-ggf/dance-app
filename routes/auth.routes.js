@@ -13,6 +13,8 @@ router.get('/signup', (req, res, next) => res.render('auth/signup'))
 
 router.post('/signup', (req, res, next) => {
 
+    console.log(req.body)
+
     const { name, lastname, email, password, role } = req.body
 
     const salt = bcrypt.genSaltSync(bcryptSalt)
@@ -21,7 +23,7 @@ router.post('/signup', (req, res, next) => {
 
     User
         .create({ name, lastname, email, password: hashPass, role })
-        .then(response => res.redirect('/'))
+        .then(() => res.redirect('/'))
         .catch(err => next(new Error(err)))
 })
 

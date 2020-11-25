@@ -28,15 +28,17 @@ const courseSchema = new Schema({
         },
         coordinates: [Number]
     },
-    teacher: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        unique: true
-    }],
+    teacher: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            sparse: true,
+        },
+    ],
     active: {
         type: Boolean,
         default: true
-    }
+    },
 }, {
 
     timestamps: true

@@ -31,16 +31,21 @@ const userSchema = new Schema({
         enum: ['TEACH', 'ALUM', 'GUEST'],
         default: 'GUEST'
     },
-    courses: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Course',
-        unique: true
-    }],
-    meetups: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Meetup',
-        unique: true
-    }]
+    courses: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Course",
+            sparse: true,
+        },
+    ],
+    meetups: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Meetup",
+            sparse: true,
+        },
+    ],
+
 }, {
 
     timestamps: true
