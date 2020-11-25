@@ -17,3 +17,12 @@ body {
   height: 500px;
   background-color: green;
 }
+
+img{
+  width: 100%;
+  object-fit: contain;
+}
+
+.navbar{
+  margin-bottom: 50px;
+}

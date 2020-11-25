@@ -1,59 +1,82 @@
- <h1>PERFIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIL</h1>
+<div class="container main">
 
-{{#with user}}
-<p>Nombre: {{name}}</p>
-<p>Apellidos: {{lastname}}</p>
-<p>Correo electrónico: {{email}}</p>
-<a href="/profile/edit">Editar perfil</a>
-{{/with}}
+    <div class="row">
 
-{{#if isTeach}}
-<h2>Estas son tus clases como profe</h2>
+        <div class="col-md-4">
 
-{{#each courses}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
+            {{#with user}}
 
-<h2>Estas son tus clases como alumno</h2>
-{{#each user.courses}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
-{{/if}}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{img}}" alt="Card image cap" class="rounded">
+                <div class="card-body">
+                    <a href="/profile/edit" class="card-link">Editar foto de perfil</a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{name}} {{lastname}}</h5>
+                    <h5 class="card-title">{{email}}</h5>
+                </div>
+                <div class="card-body">
+                    <a href="/profile/edit" class="card-link">Editar perfil</a>
+                </div>
+            </div>
+        </div>
 
-{{#if isAlumni}}
-<h2>Estas son tus clases como alumno</h2>
-{{#each user.courses}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
-{{/if}}
+        {{/with}}
+
+        <div class="col-md-8">
+
+            {{#if isTeach}}
+            <h2>Estas son tus clases como profe</h2>
+
+            {{#each courses}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+            {{/each}}
+
+            <h2>Estas son tus clases como alumno</h2>
+            {{#each user.courses}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+            {{/each}}
+            {{/if}}
+
+            {{#if isAlumni}}
+            <h2>Estas son tus clases como alumno</h2>
+            {{#each user.courses}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+            {{/each}}
+            {{/if}}
 
 
-<h2>Tus encuentros</h2>
-<hr>
-{{#each user.meetups}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-{{/each}}
+            <h2>Tus encuentros</h2>
+            <hr>
+            {{#each user.meetups}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+            {{/each}}
 
-<h2>Estos son los encuentros que has organizado</h2>
-<hr>
-{{#each meetupsOwner}}
-    <p>Nombre: {{name}}</p>
-    <p>Descripción: {{description}}</p>
-    <p>Fecha: {{date}}</p>
-    <hr>
-    <p>cancelar</p>
-    <p>editar</p>
-{{/each}}
+            <h2>Estos son los encuentros que has organizado</h2>
+            <hr>
+            {{#each meetupsOwner}}
+            <p>Nombre: {{name}}</p>
+            <p>Descripción: {{description}}</p>
+            <p>Fecha: {{date}}</p>
+            <hr>
+            <p>cancelar</p>
+            <p>editar</p>
+            {{/each}}
 
+        </div>
+
+    </div>
+
+</div>
