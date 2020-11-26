@@ -26,12 +26,13 @@ const courseSchema = new Schema({
         type: String,
         required: true
     },
-    location: {
-        type: {
-            type: String
-        },
-        coordinates: [Number]
-    },
+    // location: {
+    //     type: {
+    //         type: String
+    //     },
+    //     coordinates: [Number]
+    // },
+    address: String,
     teacher: [
         {
             type: Schema.Types.ObjectId,

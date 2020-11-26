@@ -1,5 +1,8 @@
 body {
-  font-family: sans-serif;
+  //font-family: sans-serif;
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.3em;
+  background-color: #f1e8e6;
 }
 
 .role-select{
@@ -8,21 +11,80 @@ body {
   justify-content: space-around;
 }
 
+//------------------------------------------------MAPS-----------------------------------------------
+
 #myCoursesMap{
   height: 500px;
-  background-color: red;
 }
 
 #myMeetsMap{
   height: 500px;
-  background-color: green;
+
+}
+
+//--------------------------------------------INDEX/LAYOUT------------------------------------------------------
+
+// img{
+//   width: 100%;
+//   object-fit: contain;
+// }
+
+.navbar{
+  margin-bottom: 70px;
+  background-color: #64379f;
+  height: 70px;
 }
 
 img{
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  height: 300px;
 }
 
-.navbar{
+.main-title{
+  margin-top: 50px;
   margin-bottom: 50px;
+  text-align: center;
+}
+
+.index{
+  margin-top: 50px;
+}
+
+span{
+  text-transform: uppercase;
+}
+
+footer{
+  margin-top: 50px;
+  height: 70px;
+  background-color: #27104e;
+  color: #fff;
+}
+footer p{
+padding: 32px 30px 0 30px;
+font-size: .8em;
+}
+
+.text-item{
+  text-align: justify;
+  vertical-align: inherit;
+}
+
+.btn{
+  background-color: #64379f;
+  color: #fff;
+}
+
+.buttons{
+  display: flex;
+}
+
+// .main-info{
+//   margin-bottom: 30px;
+// }
+
+.map{
+  margin-top: 50px;
+
 }

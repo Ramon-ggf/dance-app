@@ -43,12 +43,18 @@
                         required>
                 </div>
 
-                <div class='form-group'>
+                {{!-- <div class='form-group'>
                     <label for='location'>Lugar</label>
                     <input name='latitude' type='text' class='form-control' placeholder="Latitud" id='latitude'
                         value="{{location.coordinates.[0]}}" required>
                     <input name='longitude' type='text' class='form-control' placeholder="Longitud" id='longitude'
                         value="{{location.coordinates.[1]}}" required>
+                </div> --}}
+
+                <div class='form-group'>
+                    <label for='address'>Dirección</label>
+                    <input name='address' type='textbox' class='form-control' placeholder="Dirección" id='address'
+                        value="{{address}}" required>
                 </div>
 
                 <button type='submit' class='btn btn-dark btn-block'>Guardar cambios</button>

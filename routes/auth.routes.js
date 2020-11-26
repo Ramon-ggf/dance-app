@@ -16,14 +16,25 @@ router.post('/signup', (req, res, next) => {
 
     const { name, lastname, email, password, role } = req.body
 
-    const salt = bcrypt.genSaltSync(bcryptSalt)
-    const hashPass = bcrypt.hashSync(password, salt)
-
-
     User
-        .create({ name, lastname, email, password: hashPass, role })
-        .then(() => res.redirect('/'))
-        .catch(err => next(new Error(err)))
+        .findOne({ email })
+        .then(response => {
+
+            if (response) {
+                res.render('auth/login', { errorMsg: 'This user is already registered' })
+                return
+            }
+
+            const salt = bcrypt.genSaltSync(bcryptSalt)
+            const hashPass = bcrypt.hashSync(password, salt)
+
+
+            User
+                .create({ name, lastname, email, password: hashPass, role })
+                .then(() => res.redirect('/login'))
+                .catch(err => next(new Error(err)))
+        })
+
 })
 
 //--------------------------------LOGIN PATH---------------------------------------------------------
@@ -38,5 +49,7 @@ router.post('/login', passport.authenticate("local", {
     passReqToCallback: true
 
 }))
+
+router.get('/logout', (req, res) => req.session.destroy((err) => res.redirect("/")))
 
 module.exports = router

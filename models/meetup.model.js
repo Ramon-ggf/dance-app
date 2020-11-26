@@ -17,12 +17,13 @@ const meetupSchema = new Schema({
         type: String,
         required: true
     },
-    location: {
-        type: {
-            type: String
-        },
-        coordinates: [Number]
-    },
+    // location: {
+    //     type: {
+    //         type: String
+    //     },
+    //     coordinates: [Number]
+    // },
+    address: String,
     owner: [
         {
             type: Schema.Types.ObjectId,

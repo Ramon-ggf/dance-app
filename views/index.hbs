@@ -1,2 +1,80 @@
-<h1>{{siteTitle}}</h1>
-<p>Welcome to {{siteTitle}}</p>
+<div class="container">
+
+    <div class="row index">
+
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        <li class="glide__slide">
+                            <figure>
+                                <img src="/images/slides/academy.jpg" alt="concert image">
+                            </figure>
+                        </li>
+                        <li class="glide__slide">
+                            <figure>
+                                <img src="/images/slides/concert.jpg" alt="concert image">
+                            </figure>
+                        </li>
+                        <li class="glide__slide">
+                            <figure>
+                                <img src="/images/slides/tango.jpg" alt="concert image">
+                            </figure>
+                        </li>
+                        <li class="glide__slide">
+                            <figure>
+                                <img src="/images/slides/partyI.jpg" alt="concert image">
+                            </figure>
+                        </li>
+                        <li class="glide__slide">
+                            <figure>
+                                <img src="/images/slides/breakdance.jpg" alt="concert image">
+                            </figure>
+                        </li>
+                        <li class="glide__slide">
+                            <figure>
+                                <img src="/images/slides/couple.jpg" alt="concert image">
+                            </figure>
+                        </li>
+                        <li class="glide__slide">
+                            <figure>
+                                <img src="/images/slides/meet.jpg" alt="concert image">
+                            </figure>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+
+            <h1 class="main-title">Disfruta del baile como más te guste</h1>
+
+            <p class="text-item">Comparte la experiencia de quedar con gente para divertirte como nunca bailando.
+                ¿Crees que no se te da
+                bien? ¡No te preocupes! Asiste a una de las numerosas clases que ofrecen nuestr@s profesor@s.</p>
+
+            <p class="text-item">¡Seguro que tenemos la actividad que buscas! Mira en la sección <span>calses</span> o <span>encuentros</span> para conocer
+                todos los detalles.
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.4.1/dist/glide.min.js"></script>
+
+<script>
+    new Glide('.glide', {
+        gap: 10,
+        bound: true,
+        startAt: 0,
+        perView: 3,
+        autoplay: 2000
+    }).mount()
+
+</script>

@@ -1,11 +1,12 @@
 <div class="container">
 
-    <h1>QUEDADASSSS</h1>
+    <h1 class="main-title">Planifica tus encuentros</h1>
+
     <div class="row">
 
-        <div class="col-md-6">
+        {{!-- <div class="col-md-6">
             <div id="myMeetsMap"></div>
-        </div>
+        </div> --}}
 
         <div class="col-md-6">
 
@@ -27,38 +28,38 @@
 
             {{/if}}
 
-            {{#each notOwner}}
-
-            <p>Nombre: {{name}}</p>
-
-            <a href="/meetup/{{id}}"> Ver detalles</a>
-
-            <form method="POST" action="/meetup/attend/{{id}}">
-                <button name="assistants" type="submit" class="btn btn-light">Asistir al evento</button>
-            </form>
-            {{/each}}
-
             {{#if isLogged}}
 
-            <a href="/meetup/new">Crear encuentro</a>
+            <a class="btn btn-outline" href="/meetup/new">Crear encuentro</a>
 
             {{/if}}
 
+            {{#each notOwner}}
+
+            {{>meetuppartial}}
+
+            {{/each}}
+
+            
+
             {{#each response}}
 
-            <p>Nombre: {{name}}</p>
-
-            <a href="/meetup/{{id}}"> Ver detalles</a>
-            
-            <form method="POST" action="/meetup/attend/{{id}}">
-                <button name="assistants" type="submit" class="btn btn-light">Asistir al evento</button>
-            </form>
+            {{>meetuppartial}}
 
             {{/each}}
 
         </div>
 
     </div>
+
+    <div class="row map">
+
+        <div class="col-md-12">
+            <div id="myMeetsMap"></div>
+        </div>
+
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

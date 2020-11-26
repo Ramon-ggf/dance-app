@@ -38,15 +38,15 @@ router.get('/new', connectionChecker, (req, res, next) => res.render('meetups/ne
 
 router.post('/new', (req, res, next) => {
 
-    const { name, description, date, latitude, longitude } = req.body
+    const { name, description, date, address } = req.body
 
-    const location = {
-        type: 'Point',
-        coordinates: [latitude, longitude]
-    }
+    // const location = {
+    //     type: 'Point',
+    //     coordinates: [latitude, longitude]
+    // }
 
     Meetup
-        .create({ name, description, date, location, owner: req.user.id })
+        .create({ name, description, date, address, owner: req.user.id })
         .then(() => res.redirect('/meetup'))
         .catch(err => next(new Error(err)))
 
@@ -67,15 +67,15 @@ router.post('/edit/:meetup_id', (req, res, next) => {
 
     const meetId = req.params.meetup_id
 
-    const { name, description, date, latitude, longitude } = req.body
+    const { name, description, date, address } = req.body
 
-    const location = {
-        type: 'Point',
-        coordinates: [latitude, longitude]
-    }
+    // const location = {
+    //     type: 'Point',
+    //     coordinates: [latitude, longitude]
+    // }
 
     Meetup
-        .findByIdAndUpdate(meetId, { name, description, date, location }, { new: true })
+        .findByIdAndUpdate(meetId, { name, description, date, address }, { new: true })
         .then(() => res.redirect('/meetup'))
         .catch(err => next(new Error(err)))
 })
