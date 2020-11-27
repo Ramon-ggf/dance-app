@@ -44,24 +44,23 @@
 
                 </div>
 
-                <button type='submit' class='btn btn-dark btn-block'>Actualizar</button>
+                <button type='submit' class='btn btn-light btn-block'>Actualizar</button>
 
             </form>
-        </div>
 
-        <div class="col-md-6">
+
             <div class='form-group'>
                 <div class="custom-file">
                     <form action="/profile/edit/profile-picture" method="POST" enctype="multipart/form-data">
-                        <label class="custom-file-label" for='img'>Imagen de perfil</label>
-                        <input name='img' type="file" class="custom-file-input" placeholder='Selecciona un archivo'
-                            id='img'>
-
-                        <button type='submit' class='btn btn-dark btn-block'>Actualizar</button>
+                        <div class="browse-file">
+                            <label class="custom-file-label" for='img'>Imagen de perfil</label>
+                            <input name='img' type="file" class="custom-file-input" placeholder='Selecciona un archivo'
+                                id='img'>
+                        </div>
+                        <button type='submit' class='btn btn-light btn-block'>Actualizar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

@@ -40,11 +40,6 @@ router.post('/new', (req, res, next) => {
 
     const { name, description, date, address } = req.body
 
-    // const location = {
-    //     type: 'Point',
-    //     coordinates: [latitude, longitude]
-    // }
-
     Meetup
         .create({ name, description, date, address, owner: req.user.id })
         .then(() => res.redirect('/meetup'))
@@ -69,11 +64,6 @@ router.post('/edit/:meetup_id', (req, res, next) => {
 
     const { name, description, date, address } = req.body
 
-    // const location = {
-    //     type: 'Point',
-    //     coordinates: [latitude, longitude]
-    // }
-
     Meetup
         .findByIdAndUpdate(meetId, { name, description, date, address }, { new: true })
         .then(() => res.redirect('/meetup'))
@@ -89,10 +79,6 @@ router.post('/cancel/:meetup_id', (req, res, next) => {
     const meetupPromise = Meetup.findByIdAndUpdate(meetId, { active: req.body }, { new: true })
     const userPromise = User.updateMany({ meetups: meetId }, { $pull: { meetups: { $in: [meetId] } } }, { new: true })
 
-    // Meetup
-    //     .findByIdAndUpdate(meetId, { active: req.body }, { new: true })
-    //     .then(() => res.redirect('/meetup'))
-    //     .catch(err => next(new Error(err)))
 
     Promise.all([meetupPromise, userPromise])
         .then(() => res.redirect('/meetup'))
@@ -115,13 +101,28 @@ router.post('/attend/:meetup_id', connectionChecker, (req, res, next) => {
 
 })
 
+router.post('/cancelattend/:meetup_id', (req, res, next) => {
+
+    const userId = req.user.id
+
+    const meetId = req.params.meetup_id
+
+    User
+        .findByIdAndUpdate(userId, { $pull: { meetups: { $in: [meetId] } } }, { new: true })
+        .then(() => res.redirect('/profile'))
+        .catch(err => next(new Error(err)))
+
+})
+
 router.get('/:meetup_id', (req, res, next) => {
 
     const meetId = req.params.meetup_id
 
-    Meetup
-        .findById(meetId)
-        .then(response => res.render('meetups/details-meetup', response))
+    const usersPromise = User.find({ meetups: meetId }, { name: 1, lastname: 1 })
+    const meetPromise = Meetup.findById(meetId)
+
+    Promise.all([usersPromise, meetPromise])
+        .then(response => res.render('meetups/details-meetup', { users: response[0], meetup: response[1] }))
         .catch(err => next(new Error(err)))
 
 })

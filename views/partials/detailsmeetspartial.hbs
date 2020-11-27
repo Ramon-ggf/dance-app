@@ -1,0 +1,18 @@
+<div class="details">
+    {{#with meetup}}
+    <h1>'{{name}}'</h1>
+
+    <hr>
+    <p><strong>Descripción:</strong> {{description}} </p>
+    <p><strong>Fecha:</strong> {{date}}</p>
+    <p><strong>Dirección:</strong> {{address}}</p>
+    <hr>
+    {{/with}}
+
+    <h3>Participantes</h3>
+
+    {{#each users}}
+    <p> {{name}} {{lastname}}</p>
+    {{/each}}
+
+</div>

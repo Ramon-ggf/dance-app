@@ -1,0 +1,23 @@
+<div class="details">
+
+    {{#with courses}}
+    
+    <h1>'{{name}}'</h1>
+
+    <hr>
+    <p><strong>Profesor/a:</strong> {{teacher.[0].name}} {{teacher.[0].lastname}} </p>
+    <p><strong>Descripción:</strong> {{description}} </p>
+     <p><strong>Estilo:</strong> {{style}} </p>
+    <p><strong>Fecha y hora:</strong> {{date}}</p>
+    <p><strong>Dirección:</strong> {{address}}</p>
+    <hr>
+
+    {{/with}}
+
+    <h3>Asistentes</h3>
+
+    {{#each users}}
+    <p> {{name}} {{lastname}}</p>
+    {{/each}}
+
+</div>

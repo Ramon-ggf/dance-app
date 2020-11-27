@@ -1,24 +1,17 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+<div class="main-info">
 
-            <div class="main-info">
+    <p><strong>Nombre del encuentro:</strong> {{name}}</p>
+    <p><strong>Fecha y hora:</strong> {{date}}</p>
 
-                <p>Nombre: {{name}}</p>
-                <p>Fecha: {{date}}</p>
+    <div class="buttons">
 
-                <div class="buttons">
+        <a class="btn btn-light" href="/meetup/{{id}}"> Ver detalles</a>
 
-                    <a class="btn btn-light" href="/meetup/{{id}}"> Ver detalles</a>
+        <form method="POST" action="/meetup/attend/{{id}}">
+            <button name="assistants" type="submit" class="btn btn-light">Asistir al
+                evento</button>
+        </form>
 
-                    <form method="POST" action="/meetup/attend/{{id}}">
-                        <button name="assistants" type="submit" class="btn btn-light">Asistir al
-                            evento</button>
-                    </form>
-
-                </div>
-                <hr>
-            </div>
-        </div>
     </div>
+    <hr>
 </div>

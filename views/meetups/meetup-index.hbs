@@ -2,53 +2,58 @@
 
     <h1 class="main-title">Planifica tus encuentros</h1>
 
-    <div class="row">
+    {{#if isLogged}}
 
-        {{!-- <div class="col-md-6">
-            <div id="myMeetsMap"></div>
-        </div> --}}
+    <div class="create-course">
+        <a class="btn" href="/meetup/new">Crear encuentro</a>
+    </div>
 
-        <div class="col-md-6">
+    {{/if}}
 
-            {{#if isLogged}}
+    <div class="row justify-content-start align-items-end">
 
-            {{#each isOwner}}
+        {{#if isLogged}}
 
-            <p>Nombre del encuentro: {{name}}</p>
+        {{#each isOwner}}
+        <div class="col-md-4">
+            <div class="main-info">
 
-            <a href="/meetup/{{id}}"> Ver detalles</a>
+                <p><strong>Nombre del encuentro:</strong> {{name}}</p>
+                <p><strong>Fecha:</strong> {{date}}</p>
 
-            <a href="/meetup/edit/{{id}}">Edita el encuentro</a>
+                <div class="buttons">
+                    <a class="btn btn-light" href="/meetup/{{id}}"> Ver detalles</a>
 
-            <form method="POST" action="/meetup/cancel/{{id}}">
-                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
-            </form>
+                    <a class="btn btn-light" href="/meetup/edit/{{id}}">Edita el encuentro</a>
 
-            {{/each}}
+                    <form method="POST" action="/meetup/cancel/{{id}}">
+                        <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+                    </form>
 
-            {{/if}}
-
-            {{#if isLogged}}
-
-            <a class="btn btn-outline" href="/meetup/new">Crear encuentro</a>
-
-            {{/if}}
-
-            {{#each notOwner}}
-
-            {{>meetuppartial}}
-
-            {{/each}}
-
-            
-
-            {{#each response}}
-
-            {{>meetuppartial}}
-
-            {{/each}}
-
+                </div>
+                <hr>
+            </div>
         </div>
+        {{/each}}
+
+
+
+        {{#each notOwner}}
+        <div class="col-md-4">
+            {{>meetuppartial}}
+        </div>
+        {{/each}}
+
+
+        {{/if}}
+
+
+        {{#each response}}
+        <div class="col-md-4">
+            {{>meetuppartial}}
+        </div>
+        {{/each}}
+
 
     </div>
 
@@ -59,8 +64,8 @@
         </div>
 
     </div>
-
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

@@ -1,89 +1,98 @@
 <div class="container">
 
-    <h1>CLASEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSS</h1>
-    <div class="row">
+    <h1 class="main-title">Consulta las clases disponibles</h1>
 
-        <div class="col-md-6">
-            <div id="myCoursesMap"></div>
+    <form  class="search-bar" action="/courses/search" method="POST">
+        <div class="input-group mb-3 ">
+            <select name="styles" class="custom-select">
+                <option value="none">Selecciona un estilo de baile...</option>
+                <option value="Salsa casino">Salsa casino</option>
+                <option value="Bachata">Bachata</option>
+                <option value="Hip-hop">Hip-hop</option>
+                <option value="Afrobeats">Afrobeats</option>
+                <option value="Tango">Tango</option>
+                <option value="Twist">Twist</option>
+                <option value="Flamenco">Flamenco</option>
+                <option value="Reggeaton">Reggeaton</option>
+                <option value="Twerk">Twerk</option>
+                <option value="Funky">Funky</option>
+                <option value="Zumba">Zumba</option>
+                <option value="Dancehall">Dancehall</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-light" type="submit">Buscar</button>
+            </div>
+
+        </div>
+    </form>
+
+    {{#if isTeach}}
+
+    <div class="create-course">
+        <a class="btn" href="/courses/new"> Crear nueva clase </a>
+    </div>
+
+    {{/if}}
+
+    <div class="row justify-content-start align-items-end">
+
+        {{#each isOwner}}
+
+        <div class="col-md-4">
+            <div class="main-info">
+
+                <p><strong>Nombre de la clase:</strong> {{name}}</p>
+                <p><strong>Fecha y hora:</strong> {{date}}</p>
+
+
+                <div class="buttons">
+
+                    <a class="btn btn-light" href="/courses/edit/{{id}}">Editar clase</a>
+
+                    <a class="btn btn-light" href="/courses/{{id}}"> Ver detalles</a>
+
+                    <form method="POST" action="/courses/cancel/{{id}}">
+                        <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+                    </form>
+
+                </div>
+
+                <hr>
+
+            </div>
+        </div>
+        {{/each}}
+
+        {{#each notOwner}}
+        <div class="col-md-4">
+    
+            {{>coursespartial}}
+
         </div>
 
-        <div class="col-md-6">
+        {{/each}}
 
-            {{#if errorMsg}}
-            <p style="margin-top: 10px;background: red; color: white; text-align: center; padding: 10px">
-                {{errorMsg}}</p>
-            {{/if}}
-
-            <form action="/courses/search" method="POST">
-                <select name="styles" class="custom-select custom-select-sm">
-                    <option value="none">Open this select menu</option>
-                    <option value="Salsa casino">Salsa casino</option>
-                    <option value="Bachata">Bachata</option>
-                    <option value="Hip-hop">Hip-hop</option>
-                    <option value="Afrobeats">Afrobeats</option>
-                    <option value="Tango">Tango</option>
-                    <option value="Twist">Twist</option>
-                    <option value="Flamenco">Flamenco</option>
-                    <option value="Reggeaton">Reggeaton</option>
-                    <option value="Twerk">Twerk</option>
-                    <option value="Funky">Funky</option>
-                    <option value="Zumba">Zumba</option>
-                    <option value="Dancehall">Dancehall</option>
-                </select>
-
-                <button type="submit">Filtrar</button>
-            </form>
-
-
-            {{#each isOwner}}
-
-            <p>Nombre: {{name}}</p>
-
-            {{#if ../isTeach}}
-            <a href="/courses/edit/{{id}}">Editar clase</a>
-
-            <a href="/courses/{{id}}"> Ver detalles</a>
-
-            <form method="POST" action="/courses/cancel/{{id}}">
-                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
-            </form>
-            {{/if}}
-
-            {{/each}}
-
-            {{#each notOwner}}
-
-            <p>Nombre: {{name}}</p>
-
-            <form method="POST" action="/courses/attend/{{id}}">
-                <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
-            </form>
+        {{#each response}}
+        <div class="col-md-4">
             
-            <a href="/courses/{{id}}"> Ver detalles</a>
+            {{>coursespartial}}
+            
+        </div>
+        {{/each}}
 
-            {{/each}}
+    </div>
 
-            {{#if isTeach}}
-            <a href="/courses/new"> Crear nueva clase </a>
-            {{/if}}
+    <div class="row map">
 
-            {{#each response}}
-
-            <p>Nombre: {{name}}</p>
-
-            <form method="POST" action="/courses/attend/{{id}}">
-                <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
-            </form>
-
-            <a href="/courses/{{id}}"> Ver detalles</a>
-
-            {{/each}}
-
+        <div class="col-md-12">
+            <div id="myCoursesMap"></div>
         </div>
 
     </div>
 
 </div>
+
+
 
 
 

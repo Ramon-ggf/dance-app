@@ -1,4 +1,4 @@
-<div class="container main">
+<div class="container">
 
     <div class="row">
 
@@ -7,16 +7,17 @@
             {{#with user}}
 
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{img}}" alt="Card image cap" class="rounded">
-                <div class="card-body">
-                    <a href="/profile/edit" class="card-link">Editar foto de perfil</a>
-                </div>
+
+                <a href="/profile/edit" class="card-link">
+                    <img class="card-img-top" src="{{img}}" alt="Card image cap" class="rounded">
+                </a>
+
                 <div class="card-body">
                     <h5 class="card-title">{{name}} {{lastname}}</h5>
                     <h5 class="card-title">{{email}}</h5>
                 </div>
                 <div class="card-body">
-                    <a href="/profile/edit" class="card-link">Editar perfil</a>
+                    <a class="btn btn-light" href="/profile/edit" class="card-link">Editar perfil</a>
                 </div>
             </div>
         </div>
@@ -25,74 +26,146 @@
 
         <div class="col-md-8">
 
+            {{!-- Posibilidades profesor --}}
+
             {{#if isTeach}}
-            <h2>Estas son tus clases como profe</h2>
+
+            {{#unless emptyTeachCourse}}
+
+            <h2 class="main-title">Estas son las clases que has creado</h2>
 
             {{#each courses}}
-            <p>Nombre: {{name}}</p>
-            <p>Descripción: {{description}}</p>
-            <p>Fecha: {{date}}</p>
-            <hr>
 
-            <a href="/courses/edit/{{id}}">Editar clase</a>
+            <div>
 
-            <form method="POST" action="/courses/cancel/{{id}}">
-                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
-            </form>
+                <p><strong>Nombre:</strong> {{name}}</p>
+                <p><strong>Descripción:</strong> {{description}}</p>
+                <p><strong>Fecha y hora:</strong> {{date}}</p>
+                <p><strong>Dirección:</strong> {{address}}</p>
+
+
+                <div class="buttons">
+                    <a class="btn btn-light" href="/courses/edit/{{id}}">Editar clase</a>
+
+                    <form method="POST" action="/courses/cancel/{{id}}">
+                        <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+                    </form>
+                </div>
+                <hr>
+            </div>
 
             {{/each}}
 
-            <h2>Estas son tus clases como alumno</h2>
+            {{/unless}}
+
+            {{#unless emptyCourses}}
+
+            <h2 class="main-title">Estas son las clases a las que te has inscrito</h2>
+
             {{#each user.courses}}
-            <p>Nombre: {{name}}</p>
-            <p>Descripción: {{description}}</p>
-            <p>Fecha: {{date}}</p>
-            <hr>
 
-            <form method="POST" action="/courses/cancelattend/{{id}}">
-                <button name="courses" type="submit" class="btn btn-light">Cancelar</button>
-            </form>
+            <div class="col-md-8">
+
+                <p><strong>Nombre:</strong> {{name}}</p>
+                <p><strong>Descripción:</strong> {{description}}</p>
+                <p><strong>Fecha y hora:</strong> {{date}}</p>
+                <p><strong>Dirección:</strong> {{address}}</p>
+
+
+                <form method="POST" action="/courses/cancelattend/{{id}}">
+                    <button name="courses" type="submit" class="btn btn-light">Dejar de asistir</button>
+                </form>
+                <hr>
+            </div>
+
             {{/each}}
+
+            {{/unless}}
+
             {{/if}}
+
+            {{!-- Posibilidades alumno --}}
 
             {{#if isAlumni}}
-            <h2>Estas son tus clases como alumno</h2>
+
+            {{#unless emptyCourses}}
+
+            <h2 class="main-title">Estas son las clases a las que te has inscrito</h2>
+
             {{#each user.courses}}
-            <p>Nombre: {{name}}</p>
-            <p>Descripción: {{description}}</p>
-            <p>Fecha: {{date}}</p>
-            <hr>
-            <form method="POST" action="/courses/cancelattend/{{id}}">
-                <button name="courses" type="submit" class="btn btn-light">Cancelar</button>
-            </form>
+
+            <div>
+
+                <p><strong>Nombre:</strong> {{name}}</p>
+                <p><strong>Descripción:</strong> {{description}}</p>
+                <p><strong>Fecha y hora:</strong> {{date}}</p>
+                <p><strong>Dirección:</strong> {{address}}</p>
+
+
+                <form method="POST" action="/courses/cancelattend/{{id}}">
+                    <button name="courses" type="submit" class="btn btn-light">Dejar de asistir</button>
+                </form>
+                <hr>
+            </div>
+
             {{/each}}
+
+            {{/unless}}
+
             {{/if}}
 
+            {{!-- Posibilidades meets --}}
 
-            <h2>Tus encuentros</h2>
-            <hr>
+            {{#unless emptyMeetups}}
+
+            <h2 class="maint-title">Estos son los encuentros a los que deseas asistir</h2>
+
+
             {{#each user.meetups}}
-            <p>Nombre: {{name}}</p>
-            <p>Descripción: {{description}}</p>
-            <p>Fecha: {{date}}</p>
-            <hr>
+
+            <div>
+                <p><strong>Nombre:</strong> {{name}}</p>
+                <p><strong>Descripción:</strong> {{description}}</p>
+                <p><strong>Fecha y hora:</strong> {{date}}</p>
+                <p><strong>Dirección:</strong> {{address}}</p>
+
+                <form method="POST" action="/meetup/cancelattend/{{id}}">
+                    <button name="meetups" type="submit" class="btn btn-light">Dejar de asistir</button>
+                </form>
+
+                <hr>
+
+            </div>
+
             {{/each}}
 
-            <h2>Estos son los encuentros que has organizado</h2>
-            <hr>
+            {{/unless}}
+
+            {{#unless emptyLeadMeetup}}
+
+            <h2 class="main-title">Estos son los encuentros que has organizado</h2>
+
             {{#each meetupsOwner}}
-            <p>Nombre: {{name}}</p>
-            <p>Descripción: {{description}}</p>
-            <p>Fecha: {{date}}</p>
-            
 
-            <a href="/meetup/edit/{{id}}">Edita el encuentro</a>
+            <div>
+                <p><strong>Nombre:</strong> {{name}}</p>
+                <p><strong>Descripción:</strong> {{description}}</p>
+                <p><strong>Fecha y hora:</strong> {{date}}</p>
+                <p><strong>Dirección:</strong> {{address}}</p>
 
-            <form method="POST" action="/meetup/cancel/{{id}}">
-                <button name="active" type="submit" class="btn btn-light">Cancelar</button>
-            </form>
-            <hr>
+
+                <div class="buttons">
+                    <a class="btn btn-light" href="/meetup/edit/{{id}}">Editar el encuentro</a>
+
+                    <form method="POST" action="/meetup/cancel/{{id}}">
+                        <button name="active" type="submit" class="btn btn-light">Cancelar</button>
+                    </form>
+                </div>
+                <hr>
+            </div>
             {{/each}}
+
+            {{/unless}}
 
         </div>
 

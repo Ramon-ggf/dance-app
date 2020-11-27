@@ -79,16 +79,8 @@ router.get('/new', (req, res, next) => res.render('courses/new-course'))
 router.post('/new', (req, res, next) => {
 
     const { name, style, description, date, address } = req.body
-    
+
     console.log({ name, style, description, date, address })
-
-    // const location = {
-    //     type: 'Point',
-    //     coordinates: [latitude, longitude]
-    // }
-
-    //latitude, longitude (línea 81 al final)
-    //añadir location en 92
 
     Course
         .create({ name, style, description, date, address, teacher: req.user.id })
@@ -105,7 +97,7 @@ router.post('/edit/course-picture/:course_id', connectionChecker, cloudUpload.si
     const coursePromise = Course.findByIdAndUpdate(courseId, { image: req.file.path })
 
     Promise.all([picturePromise, coursePromise])
-        .then(() => res.redirect(`courses/${courseId}`))
+        .then(() => res.redirect(`/courses/${courseId}`))
         .catch(err => next(new Error(err)))
 })
 
@@ -125,11 +117,6 @@ router.post('/edit/:course_id', (req, res, next) => {
     const courseId = req.params.course_id
 
     let { name, style, description, date, address } = req.body
-
-    // const location = {
-    //     type: 'Point',
-    //     coordinates: [latitude, longitude]
-    // }
 
     Course
         .findByIdAndUpdate(courseId, { name, style, description, date, address }, { new: true })
@@ -183,10 +170,13 @@ router.get('/:course_id', (req, res, next) => {
 
     const courseId = req.params.course_id
 
-    Course
-        .findById(courseId)
-        .then(response => res.render('courses/details-course', response))
+    const coursePromise = Course.findById(courseId).populate('teacher')
+    const userPromise = User.find({ courses: courseId })
+
+    Promise.all([userPromise, coursePromise])
+        .then(response => res.render('courses/details-course', { users: response[0], courses: response[1] }))
         .catch(err => next(new Error(err)))
+
 })
 
 module.exports = router

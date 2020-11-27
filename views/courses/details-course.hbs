@@ -4,28 +4,21 @@
 
     <div class="col-md-8">
 
-      <div class="details">
-
-        <h1>Detalles de la clase '{{name}}'</h1>
-
-        <hr>
-        <p>Nombre: {{name}}</p>
-        <p>Descripción: {{description}} </p>
-        <p>Fecha: {{date}}</p>
-        <p>Dirección: {{address}}</p>
-        <hr>
-
-      </div>
+      {{>detailscoursepartial}}
 
     </div>
 
     <div class="col-md-4">
 
-      <img src="{{image}}" alt="course image">
+      <figure>
+        <img src="{{courses.image}}" alt="course image">
+      </figure>
+
+      <div>
+        <a class="btn btn-light" href="/courses"> Volver</a>
+      </div>
 
     </div>
-
-    <a href="/courses"> Volver</a>
 
   </div>
 

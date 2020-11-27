@@ -1,0 +1,16 @@
+<div class="main-info">
+
+    <p><strong>Nombre de la clase:</strong> {{name}}</p>
+    <p><strong>Fecha y hora:</strong> {{date}}</p>
+
+    <div class="buttons">
+
+        <form method="POST" action="/courses/attend/{{id}}">
+            <button name="active" type="submit" class="btn btn-light">Inscribirme en la clase</button>
+        </form>
+
+        <a class="btn btn-light" href="/courses/{{id}}"> Ver detalles</a>
+
+    </div>
+    <hr>
+</div>
