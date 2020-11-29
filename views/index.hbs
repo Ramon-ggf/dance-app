@@ -2,47 +2,57 @@
 
     <div class="row index">
 
-            <div class="glide">
-                <div class="glide__track" data-glide-el="track">
-                    <ul class="glide__slides">
-                        <li class="glide__slide">
-                            <figure>
-                                <img src="/images/slides/academy.jpg" alt="concert image">
-                            </figure>
-                        </li>
-                        <li class="glide__slide">
-                            <figure>
-                                <img src="/images/slides/concert.jpg" alt="concert image">
-                            </figure>
-                        </li>
-                        <li class="glide__slide">
-                            <figure>
-                                <img src="/images/slides/tango.jpg" alt="concert image">
-                            </figure>
-                        </li>
-                        <li class="glide__slide">
-                            <figure>
-                                <img src="/images/slides/partyI.jpg" alt="concert image">
-                            </figure>
-                        </li>
-                        <li class="glide__slide">
-                            <figure>
-                                <img src="/images/slides/breakdance.jpg" alt="concert image">
-                            </figure>
-                        </li>
-                        <li class="glide__slide">
-                            <figure>
-                                <img src="/images/slides/couple.jpg" alt="concert image">
-                            </figure>
-                        </li>
-                        <li class="glide__slide">
-                            <figure>
-                                <img src="/images/slides/meet.jpg" alt="concert image">
-                            </figure>
-                        </li>
-                    </ul>
-                </div>
+        <div class="glide">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/academy.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/concert.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/tango.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/partyI.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/breakdance.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/couple.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/meet.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/crew.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                    <li class="glide__slide">
+                        <figure>
+                            <img src="/images/slides/contemporary.jpg" alt="concert image">
+                        </figure>
+                    </li>
+                </ul>
             </div>
+        </div>
     </div>
 
     <div class="row justify-content-center">
@@ -56,7 +66,8 @@
                 ¿Crees que no se te da
                 bien? ¡No te preocupes! Asiste a una de las numerosas clases que ofrecen nuestr@s profesor@s.</p>
 
-            <p class="text-item">¡Seguro que tenemos la actividad que buscas! Mira en la sección <span>calses</span> o <span>encuentros</span> para conocer
+            <p class="text-item">¡Seguro que tenemos la actividad que buscas! Mira en la sección <span>calses</span> o
+                <span>encuentros</span> para conocer
                 todos los detalles.
             </p>
 
@@ -70,11 +81,14 @@
 
 <script>
     new Glide('.glide', {
+        type: 'carousel',
         gap: 10,
         bound: true,
         startAt: 0,
         perView: 3,
-        autoplay: 2000
+        autoplay: 3000,
+        animationDuration: 1000,
+        hoverpause: true
     }).mount()
 
 </script>

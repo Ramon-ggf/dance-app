@@ -8,7 +8,7 @@ const Picture = require("./../models/picture.model")
 const User = require('./../models/user.model')
 
 const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'You need to login' })
-const roleChecker = admittedRoles => (req, res, next) => admittedRoles.includes(req.user.role) ? next() : res.redirect('/courses') //TO DO
+const roleChecker = admittedRoles => (req, res, next) => admittedRoles.includes(req.user.role) ? next() : res.render('roleError')
 
 router.get('/', (req, res, next) => {
 

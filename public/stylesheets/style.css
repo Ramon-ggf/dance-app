@@ -47,7 +47,7 @@ footer {
   color: #fff; }
 
 footer p {
-  padding: 32px;
+  padding: 10px;
   font-size: .8em; }
 
 .text-item {
@@ -79,5 +79,19 @@ footer p {
 
 .search-bar {
   margin-bottom: 60px; }
+
+.roleError {
+  background-image: url("./../images/slides/securityAction.svg");
+  background-size: cover;
+  background-repeat: repeat;
+  height: 900px; }
+
+.roleError p {
+  color: #f05555;
+  padding: 8px;
+  margin: 270px 0 0 150px;
+  font-size: 1.3em;
+  border: 2px solid #f05555;
+  border-radius: 10px; }
 
 /*# sourceMappingURL=style.css.map */

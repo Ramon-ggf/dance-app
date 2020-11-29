@@ -17,7 +17,7 @@ router.post('/signup', (req, res, next) => {
     const { name, lastname, email, password, role } = req.body
 
     User
-        .findOne({ email })
+        .findOne({ email }, {email: 1})
         .then(response => {
 
             if (response) {

@@ -9,7 +9,6 @@ const connectionChecker = (req, res, next) => req.isAuthenticated() ? next() : r
 
 router.get('/', (req, res, next) => {
 
-
     Meetup
         .find({ active: true })
         .then(response => {
@@ -118,7 +117,7 @@ router.get('/:meetup_id', (req, res, next) => {
 
     const meetId = req.params.meetup_id
 
-    const usersPromise = User.find({ meetups: meetId }, { name: 1, lastname: 1 })
+    const usersPromise = User.find({ meetups: meetId })
     const meetPromise = Meetup.findById(meetId)
 
     Promise.all([usersPromise, meetPromise])

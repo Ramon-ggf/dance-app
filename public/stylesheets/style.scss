@@ -24,11 +24,6 @@ body {
 
 //--------------------------------------------INDEX/LAYOUT------------------------------------------------------
 
-// img{
-//   width: 100%;
-//   object-fit: contain;
-// }
-
 .navbar{
   margin-bottom: 70px;
   background-color: #64379f;
@@ -67,7 +62,7 @@ footer{
 }
 
 footer p{
-padding: 32px;
+padding: 10px;
 font-size: .8em;
 }
 
@@ -76,20 +71,20 @@ font-size: .8em;
   vertical-align: inherit;
 }
 
-.btn{
+.btn {
   background-color: rgba(100, 55, 159, .8);
   color: #fff;
 }
 
-.buttons{
+.buttons {
   display: flex;
 }
 
-.create-course{
+.create-course {
   margin-bottom: 50px;
 }
 
-.map{
+.map {
   margin-top: 50px;
 
 }
@@ -111,4 +106,20 @@ font-size: .8em;
 
 .search-bar {
   margin-bottom: 60px;
+}
+
+.roleError {
+  background-image: url('./../images/slides/securityAction.svg');
+  background-size: cover;
+  background-repeat: repeat;
+  height: 900px;
+}
+
+.roleError p {
+  color: #f05555;
+  padding: 8px;
+  margin: 270px 0 0 150px;
+  font-size: 1.3em;
+  border: 2px solid #f05555;
+  border-radius: 10px;
 }
